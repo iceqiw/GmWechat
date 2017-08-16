@@ -126,6 +126,23 @@ export const getData = (path, postData, success, name) => {
     }
 }
 
+//手动调用获取数据的aciton
+export const postData = (path, data, success, name) => {
+    let url = target + path;
+    return dispatch => {
+        dispatch(getDataStart(data))
+        return fetch(url,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            mode: 'cors'
+        })
+        .then(response => response.json())
+        .then(json => dispatch(getDataSuccess(path, json, success, name)))
+        .catch(error => console.log(error))
+    }
+}
 
 //记录单个商品列表状态
 export const testAction = (data) => {

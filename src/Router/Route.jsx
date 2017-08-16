@@ -15,11 +15,19 @@ class Roots extends Component {
 
 const history = hashHistory;
 
+
+const login = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../Component/login').default)
+    },'login')
+}
+
 const chooseProducts = (location, cb) => {
     require.ensure([], require => {
         cb(null, require('../Component/chooseProducts').default)
     },'chooseProducts')
 }
+
 
 const helpCenter = (location, cb) => {
     require.ensure([], require => {
@@ -62,7 +70,8 @@ const RouteConfig = (
             <Route path="allDeposit" getComponent={allDeposit} />//余额
             <Route path="applyDeposit" getComponent={applyDeposit} />//申请提现
             <Route path="applyRecord" getComponent={applyRecord} /> //提现记录
-            <Redirect from='*' to='/'  />
+            <Route path="login" getComponent={login} /> //提现记录
+            <Redirect from='*' to='login'  />
         </Route>
     </Router>
 );

@@ -55,7 +55,8 @@ export const postData = (path, data, success, name) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            mode: 'cors'
+            mode: 'cors',
+            body:JSON.stringify(data)
         })
         .then(response => response.json())
         .then(json => dispatch(getDataSuccess(path, json, success, name)))

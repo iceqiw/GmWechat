@@ -11,8 +11,8 @@ class Main extends Component {
     constructor() {
         super();
         this.state = {
-            username: '',  //销售金额
-            pwd: '',   //姓名
+            username: '',  //用户名
+            pwd: '',   //密码
             preventMountSubmit: true,//防止重复提交
         }
 
@@ -32,13 +32,13 @@ class Main extends Component {
 
         this.postInform = () => {
             if (this.state.username == '') {
-                Tool.alert('请输入学号');
+                Tool.alert('请输入用户名');
             } else if (this.state.pwd == '') {
                 Tool.alert('请输入密码');
             } else {
                 if (this.state.preventMountSubmit) {
                     this.state.preventMountSubmit == false;
-                    this.props.getData('/api/g', {
+                    this.props.postData('/api/g', {
                         username: this.state.username,
                         pwd: this.state.pwd
                     }, (res) => {

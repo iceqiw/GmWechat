@@ -30,6 +30,6 @@ app.get('*', function(req, res) {
 	res.sendFile(__dirname + '/dist/index.html')
 });
 
-app.listen(8088, function() {
-	console.log('正常打开8088端口')
+app.listen(18888, function() {
+	console.log('正常打开18888端口')
 });

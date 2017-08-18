@@ -6,7 +6,7 @@ import store from './Redux/Store/Store';
 import './Config/Config.js';//引入默认配置
 
 
-
+import './Style/login.scss';
 
 store.subscribe(() => { //监听state变化
     //console.log(store.getState())

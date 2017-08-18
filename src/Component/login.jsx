@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { is, fromJS } from 'immutable';
 import { Tool } from '../Config/Tool';
 import { template } from './common/mixin';
-import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
+import { FormControl, Col, FormGroup, Button, Form, Checkbox, ControlLabel, Well } from 'react-bootstrap';
+
 
 class Main extends Component {
     constructor() {
@@ -16,16 +17,16 @@ class Main extends Component {
             preventMountSubmit: true,//防止重复提交
         }
 
-        this.changeValue = (type,event) => {
+        this.changeValue = (type, event) => {
             if (type === 'username') {
                 this.setState({
-                    username:event.target.value
+                    username: event.target.value
                 })
             }
 
             if (type === 'pwd') {
                 this.setState({
-                    pwd:event.target.value
+                    pwd: event.target.value
                 })
             }
         }
@@ -42,8 +43,7 @@ class Main extends Component {
                         username: this.state.username,
                         pwd: this.state.pwd
                     }, (res) => {
-                        Tool.alert(this.state);
-                  
+                        hashHistory.push('index')
                     }, 'input')
                 }
             }
@@ -59,29 +59,47 @@ class Main extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextProps.state)
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
     }
 
     componentWillUpdate(nextProps, nextState) {
-   
     }
 
     render() {
         return (
-            <div>
-                <form className='form_style'>
-                    <div className='input_container'>
-                        <span className='input_descript'>学号：</span>
-                        <input type="text" value={this.state.username} maxLength='7' placeholder='请输入学号' onChange={this.changeValue.bind(this,'username')} />
-                    </div>
-                    <div className='input_container'>
-                        <span className='input_descript'>姓名：</span>
-                        <input type="text" value={this.state.pwd} placeholder='请输入密码' onChange={this.changeValue.bind(this,'pwd')} />
-                    </div>
-                </form>
-                <button className='submit' onClick={this.postInform}>
-                    提交
-                </button>
+            <div className="container">
+                <Form horizontal>
+                    <FormGroup controlId="formHorizontalEmail">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            用户名
+                        </Col>
+                        <Col sm={10}>
+                            <FormControl type="text" placeholder="username" value={this.state.username} onChange={this.changeValue.bind(this, 'username')} />
+                        </Col>
+                    </FormGroup>
+
+                    <FormGroup controlId="formHorizontalPassword">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            密码
+                    </Col>
+                        <Col sm={10}>
+                            <FormControl type="password" placeholder="Password" value={this.state.pwd} onChange={this.changeValue.bind(this, 'pwd')} />
+                        </Col>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Col smOffset={2} sm={10}>
+                            <Checkbox>Remember me</Checkbox>
+                        </Col>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Col smOffset={2} sm={10}>
+                            <Button onClick={this.postInform} >Sign in</Button>
+                        </Col>
+                    </FormGroup>
+                </Form>
             </div>
         )
     }

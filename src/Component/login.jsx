@@ -42,8 +42,13 @@ class Main extends Component {
                     this.props.postData('/api/g', {
                         username: this.state.username,
                         pwd: this.state.pwd
-                    }, (res) => {
-                        hashHistory.push('index')
+                    }, (data) => {
+                        console.log(data.res)
+                        if (data.res == '1') {
+                            Tool.alert(data.res);
+                        } else {
+                            hashHistory.push('index')
+                        }
                     }, 'input')
                 }
             }

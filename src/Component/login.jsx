@@ -73,38 +73,41 @@ class Main extends Component {
 
     render() {
         return (
-            <div className="container">
-                <Form horizontal>
-                    <FormGroup controlId="formHorizontalEmail">
-                        <Col componentClass={ControlLabel} sm={2}>
-                            用户名
+            <div className="index-main ">
+                <div className="index-main-body">
+                    <h2 className="title">测试系统</h2>
+                    <Form horizontal>
+                        <FormGroup controlId="formHorizontalEmail">
+                            <Col componentClass={ControlLabel} sm={2}>
+                                用户名
                         </Col>
-                        <Col sm={10}>
-                            <FormControl type="text" placeholder="username" value={this.state.username} onChange={this.changeValue.bind(this, 'username')} />
-                        </Col>
-                    </FormGroup>
+                            <Col sm={10}>
+                                <FormControl type="text" placeholder="username" value={this.state.username} onChange={this.changeValue.bind(this, 'username')} />
+                            </Col>
+                        </FormGroup>
 
-                    <FormGroup controlId="formHorizontalPassword">
-                        <Col componentClass={ControlLabel} sm={2}>
-                            密码
+                        <FormGroup controlId="formHorizontalPassword">
+                            <Col componentClass={ControlLabel} sm={2}>
+                                密码
                     </Col>
-                        <Col sm={10}>
-                            <FormControl type="password" placeholder="Password" value={this.state.pwd} onChange={this.changeValue.bind(this, 'pwd')} />
-                        </Col>
-                    </FormGroup>
+                            <Col sm={10}>
+                                <FormControl type="password" placeholder="Password" value={this.state.pwd} onChange={this.changeValue.bind(this, 'pwd')} />
+                            </Col>
+                        </FormGroup>
 
-                    <FormGroup>
-                        <Col smOffset={2} sm={10}>
-                            <Checkbox>Remember me</Checkbox>
-                        </Col>
-                    </FormGroup>
+                        <FormGroup>
+                            <Col smOffset={2} sm={10}>
+                                <Checkbox>Remember me</Checkbox>
+                            </Col>
+                        </FormGroup>
 
-                    <FormGroup>
-                        <Col smOffset={2} sm={10}>
-                            <Button onClick={this.postInform} >Sign in</Button>
-                        </Col>
-                    </FormGroup>
-                </Form>
+                        <FormGroup>
+                            <Col smOffset={2} sm={10}>
+                                <Button onClick={this.postInform} >Sign in</Button>
+                            </Col>
+                        </FormGroup>
+                    </Form>
+                </div>
             </div>
         )
     }

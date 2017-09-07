@@ -8,16 +8,16 @@ import { FormControl, Col, FormGroup, Button, Form, Checkbox, ControlLabel, Well
 
 class List extends Component {
     shouldComponentUpdate(nextProps, nextState) {
-        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state),fromJS(nextState))
+        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
     }
 
     render() {
         return (
-            <div> 
+            <div>
                 <ul className="product_list_ul">
                     {
                         this.props.list.map((item, index) => {
-                            return <ListItem key={index} {...item} index={index}/>
+                            return <ListItem key={index} {...item} index={index} />
                         })
                     }
                 </ul>
@@ -27,22 +27,30 @@ class List extends Component {
 }
 
 class ListItem extends Component {
-    constructor(props,context){
-        super(props,context)
+    constructor(props, context) {
+        super(props, context)
         this.state = {
-          
+
         }
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state),fromJS(nextState))
+        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
     }
-    
+
     render() {
-        let {question} = this.props;
+        let { question,answer,optiona,optionb,optionc,optiond } = this.props;
         return (
-            <li className='chooseProduct_item clear'>
-                {question}
+            <li>
+                <div>
+                {question}---{answer}
+                </div>
+                <div className='selectcls'>
+                A:{optiona}<br/>
+                B:{optionb}<br/>
+                C:{optionc}<br/>
+                D:{optiond}<br/>
+                </div>
             </li>
         );
     }
@@ -53,7 +61,7 @@ class Main extends Component {
         super();
         this.state = {
             topic: '',  //用户名
-            productList:[],     
+            productList: [],
             preventMountSubmit: true,//防止重复提交
         }
 
@@ -73,7 +81,7 @@ class Main extends Component {
                     this.state.preventMountSubmit == false;
                     this.props.getData('/api/jxSearch/' + this.state.topic, {}, (data) => {
                         console.log(data)
-                        this.state.productList=data
+                        this.state.productList = data
                         this.setState(this.state.productList)
                     }, 'input')
                 }
@@ -119,7 +127,7 @@ class Main extends Component {
                         </FormGroup>
                     </Form>
                 </div>
-                <List list={this.state.productList}/>
+                <List list={this.state.productList} />
             </div>
         )
     }

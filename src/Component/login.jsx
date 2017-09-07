@@ -1,7 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import pureRender from 'pure-render-decorator';
-import { hashHistory, Link } from 'react-router';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { hashHistory} from 'react-router';
 import { is, fromJS } from 'immutable';
 import { Tool } from '../Config/Tool';
 import { template } from './common/mixin';
@@ -39,9 +37,9 @@ class Main extends Component {
             } else {
                 if (this.state.preventMountSubmit) {
                     this.state.preventMountSubmit == false;
-                    this.props.postData('/api/g', {
+                    this.props.postData('/api/user/login', {
                         username: this.state.username,
-                        pwd: this.state.pwd
+                        password: this.state.pwd
                     }, (data) => {
                         console.log(data.res)
                         if (data.res == '1') {

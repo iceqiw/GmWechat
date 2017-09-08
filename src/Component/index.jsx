@@ -13,14 +13,12 @@ class List extends Component {
 
     render() {
         return (
-            <div>
-                <ul className="product_list_ul">
-                    {
-                        this.props.list.map((item, index) => {
-                            return <ListItem key={index} {...item} index={index} />
-                        })
-                    }
-                </ul>
+            <div className='"well well-lg' >
+                {
+                    this.props.list.map((item, index) => {
+                        return <ListItem key={index} {...item} index={index} />
+                    })
+                }
             </div>
         );
     }
@@ -39,19 +37,22 @@ class ListItem extends Component {
     }
 
     render() {
-        let { question,answer,optiona,optionb,optionc,optiond } = this.props;
+        let { question, answer, optiona, optionb, optionc, optiond } = this.props;
         return (
-            <li>
-                <div>
-                {question}---{answer}
-                </div>
-                <div className='selectcls'>
-                A:{optiona}<br/>
-                B:{optionb}<br/>
-                C:{optionc}<br/>
-                D:{optiond}<br/>
-                </div>
-            </li>
+            <ul className="list-group">
+                <li className="list-group-item">{question} ({answer})</li>
+                {
+                    optiona ? (
+                        <div>
+                            <li className="list-group-item">A:{optiona}</li>
+                            <li className="list-group-item">B:{optionb}</li>
+                            <li className="list-group-item">C:{optionc}</li>
+                            <li className="list-group-item">D:{optiond}</li>
+                        </div>
+                    ) : ("")
+                }
+
+            </ul>
         );
     }
 }
@@ -107,28 +108,33 @@ class Main extends Component {
 
     render() {
         return (
-            <div className="index-main ">
-                <div className="index-main-body">
-                    <h2 className="title">search</h2>
-                    <Form horizontal>
-                        <FormGroup controlId="formHorizontalEmail">
-                            <Col componentClass={ControlLabel} sm={2}>
-                                topic
+            <div className="container">
+                <div className='row'>
+                    <div className="col-md-6">
+                        <h2 className="title">search</h2>
+                        <Form horizontal>
+                            <FormGroup controlId="formHorizontalEmail">
+                                <Col componentClass={ControlLabel} sm={2}>
+                                    topic
                             </Col>
-                            <Col sm={10}>
-                                <FormControl type="text" placeholder="topic" value={this.state.topic} onChange={this.changeValue.bind(this, 'topic')} />
-                            </Col>
-                        </FormGroup>
+                                <Col sm={10}>
+                                    <FormControl type="text" placeholder="topic" value={this.state.topic} onChange={this.changeValue.bind(this, 'topic')} />
+                                </Col>
+                            </FormGroup>
 
-                        <FormGroup>
-                            <Col smOffset={2} sm={10}>
-                                <Button onClick={this.getInform} >Sign in</Button>
-                            </Col>
-                        </FormGroup>
-                    </Form>
+                            <FormGroup>
+                                <Col smOffset={2} sm={10}>
+                                    <Button onClick={this.getInform} >Sign in</Button>
+                                </Col>
+                            </FormGroup>
+                        </Form>
+                    </div>
                 </div>
-                <List list={this.state.productList} />
+                <div className='row' >
+                    <List list={this.state.productList} />
+                </div>
             </div>
+
         )
     }
 

@@ -119,7 +119,7 @@ class Main extends Component {
                             </div>
                             <div className="form-group">
                                 <div className="col-sm-offset-2 col-sm-10">
-                                    <button onClick={this.getInform} className="btn btn-danger">Sign in</button>
+                                <input type="button" onClick={this.getInform} className="btn btn-default" value="search" />
                                 </div>
                             </div>
                         </form>

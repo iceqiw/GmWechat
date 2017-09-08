@@ -50,7 +50,6 @@ class Main extends Component {
                 }
             }
         }
-
     }
 
     componentWillMount() {
@@ -79,13 +78,13 @@ class Main extends Component {
                                 <div className="form-group">
                                     <label className="col-sm-2 control-label" >用户名</label>
                                     <div className="col-sm-10">
-                                        <input  type="text" className="form-control" value={this.state.username} onChange={this.changeValue.bind(this, 'username')} placeholder="username" />
+                                        <input type="text" className="form-control" value={this.state.username} onChange={this.changeValue.bind(this, 'username')} placeholder="username" />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label className="col-sm-2 control-label" >密码</label>
                                     <div className="col-sm-10">
-                                        <input  type="password" className="form-control" value={this.state.pwd} onChange={this.changeValue.bind(this, 'pwd')} placeholder="Password" />
+                                        <input type="password" className="form-control" value={this.state.pwd} onChange={this.changeValue.bind(this, 'pwd')} placeholder="Password" />
                                     </div>
                                 </div>
 
@@ -98,7 +97,7 @@ class Main extends Component {
                                 </div>
                                 <div className="form-group">
                                     <div className="col-sm-offset-2 col-sm-10">
-                                        <button  onClick={this.postInform} className="btn btn-default">Sign in</button>
+                                        <input type="button" onClick={this.postInform} className="btn btn-default" value="sign in" />
                                     </div>
                                 </div>
                             </form>

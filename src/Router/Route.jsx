@@ -22,7 +22,7 @@ const RouteConfig = (
             <IndexRoute component={login} />//首页
             <Route path="index" component={index} />
             <Route path="login" component={login} /> //登录
-            <Redirect from='*' to='index'  />
+            <Redirect from='*' to='login'  />
         </Route>
     </Router>
 );

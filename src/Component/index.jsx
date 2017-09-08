@@ -3,8 +3,6 @@ import { hashHistory } from 'react-router';
 import { is, fromJS } from 'immutable';
 import { Tool } from '../Config/Tool';
 import { template } from './common/mixin';
-import { FormControl, Col, FormGroup, Button, Form, Checkbox, ControlLabel, Well } from 'react-bootstrap';
-
 
 class List extends Component {
     shouldComponentUpdate(nextProps, nextState) {
@@ -37,10 +35,10 @@ class ListItem extends Component {
     }
 
     render() {
-        let { question, answer, optiona, optionb, optionc, optiond } = this.props;
+        let { question, answer, optiona, optionb, optionc, optiond, index } = this.props;
         return (
             <ul className="list-group">
-                <li className="list-group-item">{question} ({answer})</li>
+                <li className="list-group-item"><h4>{index + 1} . {question} ({answer})</h4></li>
                 {
                     optiona ? (
                         <div>
@@ -111,23 +109,20 @@ class Main extends Component {
             <div className="container">
                 <div className='row'>
                     <div className="col-md-6">
-                        <h2 className="title">search</h2>
-                        <Form horizontal>
-                            <FormGroup controlId="formHorizontalEmail">
-                                <Col componentClass={ControlLabel} sm={2}>
-                                    topic
-                            </Col>
-                                <Col sm={10}>
-                                    <FormControl type="text" placeholder="topic" value={this.state.topic} onChange={this.changeValue.bind(this, 'topic')} />
-                                </Col>
-                            </FormGroup>
-
-                            <FormGroup>
-                                <Col smOffset={2} sm={10}>
-                                    <Button onClick={this.getInform} >Sign in</Button>
-                                </Col>
-                            </FormGroup>
-                        </Form>
+                        <h2 >search</h2>
+                        <form className="form-horizontal" >
+                            <div className="form-group">
+                                <label className="col-sm-2 control-label" >题目</label>
+                                <div className="col-sm-10">
+                                    <input type="text" className="form-control" value={this.state.topic} onChange={this.changeValue.bind(this, 'topic')} placeholder="topic" />
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="col-sm-offset-2 col-sm-10">
+                                    <button onClick={this.getInform} className="btn btn-danger">Sign in</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div className='row' >

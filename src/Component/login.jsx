@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { hashHistory} from 'react-router';
+import { hashHistory } from 'react-router';
 import { is, fromJS } from 'immutable';
 import { Tool } from '../Config/Tool';
 import { template } from './common/mixin';
-import { FormControl, Col, FormGroup, Button, Form, Checkbox, ControlLabel, Well } from 'react-bootstrap';
 
 
 class Main extends Component {
@@ -71,40 +70,40 @@ class Main extends Component {
 
     render() {
         return (
-            <div className="index-main ">
-                <div className="index-main-body">
-                    <h2 className="title">测试系统</h2>
-                    <Form horizontal>
-                        <FormGroup controlId="formHorizontalEmail">
-                            <Col componentClass={ControlLabel} sm={2}>
-                                用户名
-                        </Col>
-                            <Col sm={10}>
-                                <FormControl type="text" placeholder="username" value={this.state.username} onChange={this.changeValue.bind(this, 'username')} />
-                            </Col>
-                        </FormGroup>
+            <div className="container">
+                <div className="col-md-offset-3 col-md-6 login-panel">
+                    <div className="panel panel-primary">
+                        <div className="panel-heading">登陆</div>
+                        <div className="panel-body">
+                            <form className="form-horizontal" >
+                                <div className="form-group">
+                                    <label className="col-sm-2 control-label" >用户名</label>
+                                    <div className="col-sm-10">
+                                        <input  type="text" className="form-control" value={this.state.username} onChange={this.changeValue.bind(this, 'username')} placeholder="username" />
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <label className="col-sm-2 control-label" >密码</label>
+                                    <div className="col-sm-10">
+                                        <input  type="password" className="form-control" value={this.state.pwd} onChange={this.changeValue.bind(this, 'pwd')} placeholder="Password" />
+                                    </div>
+                                </div>
 
-                        <FormGroup controlId="formHorizontalPassword">
-                            <Col componentClass={ControlLabel} sm={2}>
-                                密码
-                    </Col>
-                            <Col sm={10}>
-                                <FormControl type="password" placeholder="Password" value={this.state.pwd} onChange={this.changeValue.bind(this, 'pwd')} />
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup>
-                            <Col smOffset={2} sm={10}>
-                                <Checkbox>Remember me</Checkbox>
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup>
-                            <Col smOffset={2} sm={10}>
-                                <Button onClick={this.postInform} >Sign in</Button>
-                            </Col>
-                        </FormGroup>
-                    </Form>
+                                <div className="form-group">
+                                    <div className="col-sm-offset-2 col-sm-10">
+                                        <div className="checkbox">
+                                            <label><input type="checkbox" /> Remember me</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <div className="col-sm-offset-2 col-sm-10">
+                                        <button  onClick={this.postInform} className="btn btn-default">Sign in</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

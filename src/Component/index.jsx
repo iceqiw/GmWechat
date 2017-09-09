@@ -35,10 +35,11 @@ class ListItem extends Component {
     }
 
     render() {
-        let { question, answer, optiona, optionb, optionc, optiond, index } = this.props;
+        let { question, answer, optiona, optionb, optionc, optiond, index,imglink } = this.props;
         return (
             <ul className="list-group">
                 <li className="list-group-item"><h4>{index + 1} . {question} ({answer})</h4></li>
+                <img height="180" src={imglink} width="204" />
                 {
                     optiona ? (
                         <div>

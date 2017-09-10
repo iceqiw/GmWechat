@@ -2,66 +2,14 @@ import React, { Component } from 'react';
 import { hashHistory } from 'react-router';
 import { is, fromJS } from 'immutable';
 import { Tool } from '../Config/Tool';
-import { template } from './common/mixin';
-
-class List extends Component {
-    shouldComponentUpdate(nextProps, nextState) {
-        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
-    }
-
-    render() {
-        return (
-            <div className='"well well-lg' >
-                {
-                    this.props.list.map((item, index) => {
-                        return <ListItem key={index} {...item} index={index} />
-                    })
-                }
-            </div>
-        );
-    }
-}
-
-class ListItem extends Component {
-    constructor(props, context) {
-        super(props, context)
-        this.state = {
-
-        }
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
-    }
-
-    render() {
-        let { question, answer, optiona, optionb, optionc, optiond, index,imglink } = this.props;
-        return (
-            <ul className="list-group">
-                <li className="list-group-item"><h4>{index + 1} . {question} ({answer})</h4></li>
-                <img height="180" src={imglink} width="204" />
-                {
-                    optiona ? (
-                        <div>
-                            <li className="list-group-item">A:{optiona}</li>
-                            <li className="list-group-item">B:{optionb}</li>
-                            <li className="list-group-item">C:{optionc}</li>
-                            <li className="list-group-item">D:{optiond}</li>
-                        </div>
-                    ) : ("")
-                }
-
-            </ul>
-        );
-    }
-}
+import { Header, template } from './common/mixin';
 
 class Main extends Component {
     constructor() {
         super();
         this.state = {
             topic: '',  //用户名
-            productList: [],
+            domainItemList: [],
             preventMountSubmit: true,//防止重复提交
         }
 
@@ -81,8 +29,8 @@ class Main extends Component {
                     this.state.preventMountSubmit == false;
                     this.props.getData('/api/jxSearch/' + this.state.topic, {}, (data) => {
                         console.log(data)
-                        this.state.productList = data
-                        this.setState(this.state.productList)
+                        this.state.domainItemList = data
+                        this.setState(this.state.domainItemList)
                     }, 'input')
                 }
             }
@@ -107,31 +55,13 @@ class Main extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className='row'>
-                    <div className="col-md-6">
-                        <h2 >search</h2>
-                        <form className="form-horizontal" >
-                            <div className="form-group">
-                                <label className="col-sm-2 control-label" >题目</label>
-                                <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={this.state.topic} onChange={this.changeValue.bind(this, 'topic')} placeholder="topic" />
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <div className="col-sm-offset-2 col-sm-10">
-                                <input type="button" onClick={this.getInform} className="btn btn-primary" value="search" />
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div className='row' >
-                    <List list={this.state.productList} />
+            <div>
+                <Header title='index' />
+                <div className="container">
+                    
                 </div>
             </div>
-
-        )
+        );
     }
 
     componentWillUnmount() {

@@ -3,6 +3,7 @@ import { Router, Route, Redirect, IndexRoute, browserHistory, hashHistory } from
 
 import index from '../Component/index'; //首页
 import login from '../Component/login'; //登录
+import search from '../Component/search'; //登录
 class Roots extends Component {
     render() {
         return (
@@ -22,6 +23,7 @@ const RouteConfig = (
             <IndexRoute component={login} />//首页
             <Route path="index" component={index} />
             <Route path="login" component={login} /> //登录
+            <Route path="search" component={search} /> //登录
             <Redirect from='*' to='login'  />
         </Route>
     </Router>

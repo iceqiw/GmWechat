@@ -14,4 +14,3 @@ export const requestData = (state = {}, action = {}) => {
             return state;
     }
 }
-

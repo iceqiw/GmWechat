@@ -39,12 +39,12 @@ class Main extends Component {
                     this.props.postData('/api/user/login', {
                         username: this.state.username,
                         password: this.state.pwd
-                    }, (data) => {
-                        console.log(data.res)
-                        if (data.res) {
+                    }, (resp) => {
+                        console.log(resp.data)
+                        if (resp.data=='true') {
                             hashHistory.push('index')
                         } else {
-                            Tool.alert(data.res);
+                            Tool.alert(resp.data);
                         }
                     }, 'input')
                 }

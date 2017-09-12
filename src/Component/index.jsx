@@ -27,9 +27,9 @@ class Main extends Component {
             } else {
                 if (this.state.preventMountSubmit) {
                     this.state.preventMountSubmit == false;
-                    this.props.getData('/api/jxSearch/' + this.state.topic, {}, (data) => {
-                        console.log(data)
-                        this.state.domainItemList = data
+                    this.props.getData('/api/jxSearch/' + this.state.topic, {}, (resp) => {
+                        console.log(resp)
+                        this.state.domainItemList = resp.data
                         this.setState(this.state.domainItemList)
                     }, 'input')
                 }

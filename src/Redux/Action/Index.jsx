@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import {target} from '../../Config/Config'
 import {Tool} from '../../Config/Tool'
-
+import { hashHistory } from 'react-router';
 export const GET_DATA_START = 'GET_DATA_START'
 export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'
 
@@ -34,14 +34,20 @@ export const getData = (path, postData, success, name) => {
         dispatch(getDataStart(postData))
         return fetch(url,{
             method: 'GET',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
             mode: 'cors'
         })
-        .then(response => response.json())
-        .then(json => dispatch(getDataSuccess(path, json, success, name)))
-        .catch(error => console.log(error))
+        .then(response =>{
+            console.log("status", response.ok);
+            if (response.ok) {
+                response.json().then(json => dispatch(getDataSuccess(path, json, success, name)))
+            } else {
+                hashHistory.push('login')
+            }
+        }).catch(error => console.log(error))
     }
 }
 
@@ -52,14 +58,20 @@ export const postData = (path, data, success, name) => {
         dispatch(getDataStart(data))
         return fetch(url,{
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
             mode: 'cors',
             body:JSON.stringify(data)
         })
-        .then(response => response.json())
-        .then(json => dispatch(getDataSuccess(path, json, success, name)))
-        .catch(error => console.log(error))
+        .then(response =>{
+            console.log("status", response.status);
+            if (response.ok) {
+                response.json().then(json => dispatch(getDataSuccess(path, json, success, name)))
+            } else {
+                hashHistory.push('login')
+            }
+        }).catch(error => console.log(error))
     }
 }

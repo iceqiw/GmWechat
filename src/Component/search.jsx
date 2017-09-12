@@ -83,9 +83,9 @@ class Main extends Component {
             } else {
                 if (this.state.preventMountSubmit) {
                     this.state.preventMountSubmit == false;
-                    this.props.getData('/api/jxSearch/search/' + this.state.topic, {}, (data) => {
-                        console.log(data)
-                        this.state.productList = data
+                    this.props.getData('/api/jxSearch/search/' + this.state.topic, {}, (resp) => {
+                        console.log(resp)
+                        this.state.productList = resp.data
                         this.setState(this.state.productList)
                     }, 'input')
                 }

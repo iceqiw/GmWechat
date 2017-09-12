@@ -41,7 +41,7 @@ class Main extends Component {
                         password: this.state.pwd
                     }, (resp) => {
                         console.log(resp.data)
-                        if (resp.data=='true') {
+                        if (resp.data) {
                             hashHistory.push('index')
                         } else {
                             Tool.alert(resp.data);

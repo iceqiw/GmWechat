@@ -83,7 +83,7 @@ class Main extends Component {
             } else {
                 if (this.state.preventMountSubmit) {
                     this.state.preventMountSubmit == false;
-                    this.props.getData('/api/jxSearch/' + this.state.topic, {}, (data) => {
+                    this.props.getData('/api/jxSearch/search/' + this.state.topic, {}, (data) => {
                         console.log(data)
                         this.state.productList = data
                         this.setState(this.state.productList)

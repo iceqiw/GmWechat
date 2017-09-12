@@ -41,10 +41,10 @@ class Main extends Component {
                         password: this.state.pwd
                     }, (data) => {
                         console.log(data.res)
-                        if (data.res == '1') {
-                            Tool.alert(data.res);
-                        } else {
+                        if (data.res) {
                             hashHistory.push('index')
+                        } else {
+                            Tool.alert(data.res);
                         }
                     }, 'input')
                 }

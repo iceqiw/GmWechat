@@ -8,37 +8,17 @@ class Main extends Component {
     constructor() {
         super();
         this.state = {
-            topic: '',  //用户名
-            domainItemList: [],
-            preventMountSubmit: true,//防止重复提交
-        }
-
-        this.changeValue = (type, event) => {
-            if (type === 'topic') {
-                this.setState({
-                    topic: event.target.value
-                })
-            }
-        }
-
-        this.getInform = () => {
-            if (this.state.topic == '') {
-                Tool.alert('请输入topic');
-            } else {
-                if (this.state.preventMountSubmit) {
-                    this.state.preventMountSubmit == false;
-                    this.props.getData('/api/jxSearch/' + this.state.topic, {}, (resp) => {
-                        console.log(resp)
-                        this.state.domainItemList = resp.data
-                        this.setState(this.state.domainItemList)
-                    }, 'input')
-                }
-            }
+            topic: '[1]'
         }
     }
 
+
     componentWillMount() {
         console.log("componentWillMount")
+        this.props.getData('/api/train/search/2017-10-01/1/1/1', {}, (resp) => {
+            console.log(resp)
+            this.setState(resp.data)
+        }, 'input')
     }
     componentDidMount() {
         console.log("componentDidMount")
@@ -58,7 +38,24 @@ class Main extends Component {
             <div>
                 <Header title='index' />
                 <div className="container">
-                    
+                    <table className="table ">
+                        <thead>
+                            <tr>
+                                <th >硬卧</th>
+                                <th >硬座</th>
+                                <th >软卧</th>
+                                <th >车次</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td >{this.state.num_yw}</td>
+                                <td >{this.state.num_yz}</td>
+                                <td >{this.state.num_rw}</td>
+                                <td >{this.state.train}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         );

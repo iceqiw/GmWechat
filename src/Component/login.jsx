@@ -40,7 +40,6 @@ class Main extends Component {
                         username: this.state.username,
                         password: this.state.pwd
                     }, (resp) => {
-                        console.log(resp.data)
                         if (resp.data) {
                             hashHistory.push('index')
                         } else {
@@ -48,6 +47,7 @@ class Main extends Component {
                         }
                     }, 'input')
                 }
+                
             }
         }
     }
@@ -60,11 +60,11 @@ class Main extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log(nextProps.state)
         return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
     }
 
     componentWillUpdate(nextProps, nextState) {
+        console.log(nextProps.requestData)
     }
 
     render() {

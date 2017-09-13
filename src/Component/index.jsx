@@ -19,6 +19,7 @@ class Main extends Component {
             console.log(resp)
             this.setState(resp.data)
         }, 'input')
+
     }
     componentDidMount() {
         console.log("componentDidMount")

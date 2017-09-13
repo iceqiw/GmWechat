@@ -8,6 +8,7 @@ export const requestData = (state = {}, action = {}) => {
         case GET_DATA_START:
             return state;
         case GET_DATA_SUCCESS:
+            state=action.json
             action.success(action.json);
             return state;
         default:

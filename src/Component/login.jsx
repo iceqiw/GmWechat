@@ -36,7 +36,7 @@ class Main extends Component {
             } else {
                 if (this.state.preventMountSubmit) {
                     this.state.preventMountSubmit == false;
-                    this.props.postData('/api/user/login', {
+                    this.props.formData('/api/user/login', {
                         username: this.state.username,
                         password: this.state.pwd
                     }, (resp) => {
@@ -45,7 +45,7 @@ class Main extends Component {
                         } else {
                             Tool.alert(resp.data);
                         }
-                    }, 'input')
+                    })
                 }
                 
             }

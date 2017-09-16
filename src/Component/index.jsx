@@ -78,7 +78,7 @@ class Main extends Component {
         this.props.getData('/api/train/search', {}, (resp) => {
             console.log(resp)
             this.setState({productList:resp.data})
-        }, 'input')
+        })
 
     }
     componentDidMount() {

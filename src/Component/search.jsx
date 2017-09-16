@@ -88,7 +88,7 @@ class Main extends Component {
                         this.setState({
                             productList: resp.data
                         })
-                    }, 'input')
+                    })
                 }
             }
         }

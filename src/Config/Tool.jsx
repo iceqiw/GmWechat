@@ -4,7 +4,7 @@ import * as config from './Config';
 const { target } = config;
 export const Tool = {};
 
-Tool.paramType = data => {
+Tool.urlParam = data => {
     let paramArr = [];
     let paramStr = '';
     for (let attr in data) {
@@ -12,6 +12,16 @@ Tool.paramType = data => {
     }
     paramStr = paramArr.join('&');
     paramStr = '?' + paramStr;
+    return paramStr
+}
+
+Tool.formParam = data => {
+    let paramArr = [];
+    let paramStr = '';
+    for (let attr in data) {
+        paramArr.push(attr + '=' + data[attr]);
+    }
+    paramStr = paramArr.join('&');
     return paramStr
 }
 

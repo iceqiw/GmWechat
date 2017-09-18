@@ -1,9 +1,43 @@
 import React, { Component } from 'react';
-import { hashHistory } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 import { is, fromJS } from 'immutable';
 import { Tool } from '../Config/Tool';
 import { Header, template } from './common/mixin';
 
+
+class TableRow extends Component {
+    constructor() {
+        super()
+        this.goEdit = (id, train, startStation, endStation, date) => {
+            console.log(id, train)
+        }
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
+    }
+
+    render() {
+        let { num_yw, num_yz, num_rw, train, end_station, start_station, date, id } = this.props;
+        return (
+            <tr>
+                <td >{id}</td>
+                <td >{train}</td>
+                <td >{date}</td>
+                <td >{start_station}</td>
+                <td >{end_station}</td>
+                <td >{num_yw}</td>
+                <td >{num_yz}</td>
+                <td >{num_rw}</td>
+                <td >
+                    <Link to={'/editTrains/' + id} >
+                        <span>编辑</span>
+                    </Link>
+                </td>
+            </tr>
+        );
+    }
+}
 
 class Table extends Component {
     shouldComponentUpdate(nextProps, nextState) {
@@ -15,6 +49,7 @@ class Table extends Component {
             <table className="table ">
                 <thead>
                     <tr>
+                        <th >index</th>
                         <th >车次</th>
                         <th >日期</th>
                         <th >始发站</th>
@@ -22,6 +57,7 @@ class Table extends Component {
                         <th >硬卧</th>
                         <th >硬座</th>
                         <th >软卧</th>
+                        <th >op</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,33 +72,6 @@ class Table extends Component {
     }
 }
 
-class TableRow extends Component {
-    constructor(props, context) {
-        super(props, context)
-        this.state = {
-
-        }
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
-    }
-
-    render() {
-        let { num_yw, num_yz, num_rw, train,end_station,start_station,date} = this.props;
-        return (
-            <tr>
-                <td >{train}</td>
-                <td >{date}</td>
-                <td >{start_station}</td>
-                <td >{end_station}</td>
-                <td >{num_yw}</td>
-                <td >{num_yz}</td>
-                <td >{num_rw}</td>
-            </tr>
-        );
-    }
-}
 
 class Main extends Component {
     constructor() {
@@ -77,7 +86,7 @@ class Main extends Component {
         console.log("componentWillMount")
         this.props.getData('/api/train/search', {}, (resp) => {
             console.log(resp)
-            this.setState({productList:resp.data})
+            this.setState({ productList: resp.data })
         })
 
     }
@@ -99,6 +108,12 @@ class Main extends Component {
             <div>
                 <Header title='index' />
                 <div className="container">
+                    <button className="btn btn-default" >
+                        <Link to='/editTrains/0'>
+                            <span>添加</span>
+                        </Link>
+                    </button>
+
                     <Table list={this.state.productList} />
                 </div>
             </div>

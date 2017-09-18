@@ -4,30 +4,10 @@ import { is, fromJS } from 'immutable';
 import { Tool } from '../Config/Tool';
 import { Header, template } from './common/mixin';
 
-class List extends Component {
-    shouldComponentUpdate(nextProps, nextState) {
-        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
-    }
-
-    render() {
-        return (
-            <div className='"well well-lg' >
-                {
-                    this.props.list.map((item, index) => {
-                        return <ListItem key={index} {...item} index={index} />
-                    })
-                }
-            </div>
-        );
-    }
-}
 
 class ListItem extends Component {
-    constructor(props, context) {
-        super(props, context)
-        this.state = {
-
-        }
+    constructor() {
+        super()
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -56,6 +36,25 @@ class ListItem extends Component {
                 }
 
             </ul>
+        );
+    }
+}
+
+
+class List extends Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
+    }
+
+    render() {
+        return (
+            <div className='"well well-lg' >
+                {
+                    this.props.list.map((item, index) => {
+                        return <ListItem key={index} {...item} index={index} />
+                    })
+                }
+            </div>
         );
     }
 }

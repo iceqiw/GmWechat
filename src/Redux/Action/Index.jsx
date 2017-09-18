@@ -95,3 +95,20 @@ export const putData = (path, data, success) => {
         }).catch(error => console.log(error))
     }
 }
+
+export const deleteData = (path, urlData, success) => {
+    let url = target + path + Tool.urlParam(urlData);
+    return dispatch => {
+        return fetch(url, {
+            method: 'DELETE',
+            credentials: 'include',
+            mode: 'cors'
+        }).then(response => {
+            if (response.ok) {
+                response.json().then(json => dispatch(getDataSuccess(json, success)))
+            } else {
+                hashHistory.push('login')
+            }
+        }).catch(error => console.log(error))
+    }
+}

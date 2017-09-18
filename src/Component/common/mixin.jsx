@@ -28,9 +28,6 @@ export class Header extends Component {  //头部标题
 
     render() {
         let { title } = this.props;
-        if (title&&title == '销售录入') {
-            indexNavStyle = {position:'absolute'}
-        }
         return (
             <nav className="navbar navbar-inverse">
                 <div className="container-fluid">

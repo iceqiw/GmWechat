@@ -1,5 +1,5 @@
 {
-  "name": "pxq",
+  "name": "GmWechat",
   "version": "1.0.1",
   "description": "react-demo",
   "main": "server.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "github",
-    "url": "https://github.com/bailicangdu/pxq"
+    "url": "https://github.com/bailicangdu/GmWechat"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bailicangdu/pxq/issues"
+    "url": "https://github.com/bailicangdu/GmWechat/issues"
   },
-  "homepage": "https://github.com/bailicangdu/pxq#readme",
+  "homepage": "https://github.com/bailicangdu/GmWechat#readme",
   "dependencies": {
     "github-markdown-css": "^2.4.0",
     "immutable": "^3.8.1",

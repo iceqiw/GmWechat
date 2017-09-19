@@ -11,7 +11,9 @@ Tool.urlParam = data => {
         paramArr.push(attr + '=' + data[attr]);
     }
     paramStr = paramArr.join('&');
-    paramStr = '?' + paramStr;
+    if(paramStr!=''){
+        paramStr = '?' + paramStr;
+    }
     return paramStr
 }
 

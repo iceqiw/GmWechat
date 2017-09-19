@@ -20,8 +20,8 @@ var server = new WebpackDevServer(webpack(config), {
 
 //将其他路由，全部返回index.html
 server.app.get('*', function(req, res) {
-	res.sendFile(__dirname + '/dist/index.html')
+	res.sendFile(__dirname + '/admin/index.html')
 });
-server.listen(18888, function() {
-	console.log('正常打开18888端口')
+server.listen(3001, function() {
+	console.log('正常打开3001端口')
 });
